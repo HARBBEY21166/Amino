@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaVerse - Discover Amazing Movies</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+  --accent-color: #fbc531;
+  --dark-color: #2f3640;
+  --light-color: #f5f6fa;
+  --text-color: #2d3436;
+  --gray-color: #dfe6e9;
+}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+        }
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar input {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            margin-right: 1rem;
+        }
+        
+        .search-bar button {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/signbg.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+        }
+        
+        .featured-section {
+            padding: 4rem 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .section-title span {
+            color: var(--accent-color);
+        }
+        
+        
+
+        .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      background-color: var(--accent-color);
+      color: var(--dark-color);
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(251, 197, 49, 0.4);
+    }
+
+        /* Features Section */
+    .features {
+      text-align: center;
+        margin-top: 3rem;
+    }
+    
+    .features-grid {
+      /*display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        */
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap: 3rem;
+      margin: 3rem;
+        
+    }
+    
+    .feature-card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+        width:350px;
+        height:350px;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+   .testimonial-heading {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .testimonial-heading h2 {
+      font-size: 32px;
+      color: #ffffff;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .testimonial-heading h2:after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: #fbc531;
+    }
+    
+    .testimonial-heading p {
+      font-size: 16px;
+      color: #999;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .testimonial-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 30px;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+    
+    .quote-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 60px;
+      opacity: 0.1;
+      color: #fbc531;
+    }
+    
+    .testimonial-content {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .testimonial-rating {
+      color: #ffca28;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    
+    .testimonial-user {
+      display: flex;
+      align-items: center;
+    }
+    
+    .user-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .user-info h4 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    
+    .user-info p {
+      font-size: 14px;
+      color: #999;
+    }
+    
+    .testimonial-cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    .cta-button {
+      background-color: #fbc531;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+    
+    .cta-button:hover {
+      background-color: #fbc531;
+        color:#000;
+    }
+    
+    @media (max-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    
+    /* App Download Section */
+    .app-download {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .app-info {
+      max-width: 50%;
+    }
+    
+    .app-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    .app-description {
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    
+    .app-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .app-button {
+      display: flex;
+      align-items: center;
+      background-color: var(--dark-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .app-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .app-button-icon {
+      margin-right: 1rem;
+    }
+        .app-button-icon img{
+            width:auto;
+            height:5rem;
+        }
+    
+    .app-button-text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .app-button-small {
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+    
+    .app-button-large {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    
+    .app-image {
+      max-width: 40%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Blog Section */
+    .blog {
+      text-align: center;
+    }
+    
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .blog-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .blog-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .blog-content {
+      padding: 1.5rem;
+    }
+    
+    .blog-date {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--dark-color);
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 0.3rem 0.8rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    
+    .blog-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .blog-excerpt {
+      color: #636e72;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .read-more {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .read-more span {
+      margin-left: 0.5rem;
+    }
+    
+    /* Pricing Section */
+    .pricing {
+      text-align: center;
+    }
+    
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .pricing-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      position: relative;
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .pricing-card.popular {
+      border: 2px solid var(--accent-color);
+      transform: scale(1.05);
+    }
+    
+    .pricing-card.popular:hover {
+      transform: scale(1.05) translateY(-10px);
+    }
+    
+    .popular-tag {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: var(--accent-color);
+      color: var(--dark-color);
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+    
+    .pricing-header {
+      padding: 2rem;
+      background-color: var(--dark-color);
+      color: white;
+    }
+    
+    .pricing-name {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .pricing-price {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .pricing-price span {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+    
+    .pricing-duration {
+      color: #dfe6e9;
+    }
+    
+    .pricing-features {
+      padding: 2rem;
+    }
+    
+    .pricing-feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .pricing-feature-icon {
+      margin-right: 0.8rem;
+      color: var(--accent-color);
+    }
+    
+    .pricing-btn {
+      margin-top: 1.5rem;
+      width: 100%;
+      text-align: center;
+    }
+                                                            
+        
+        .newsletter {
+            background-color: rgba(44, 62, 80, 0.9);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 30px 0 0 30px;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 30px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-form button {
+                border-radius: 30px;
+            }
+        }
+
+
+        @media (max-width: 992px) {
+      .app-download {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .app-info, .app-image {
+        max-width: 100%;
+      }
+      
+      .app-image {
+        margin-top: 2rem;
+      }
+      
+      .app-buttons {
+        justify-content: center;
+      }
+    }
+    </style>
+</head>
+<body>
+     <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo"><a href="index.html">Amino</a></h1>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-list-item"><a href="movies.html">Movies</a></li>
+                    <li class="menu-list-item"><a href="anime.html">Anime</a></li>
+                    <li class="menu-list-item"><a href="popular.html">Popular</a></li>
+                    <li class="menu-list-item"><a href="trends.html">Trends</a></li>
+
+                </ul>
+            </div>
+
+            <div class="profile-containers">
+                <button class="btn">Sign Up</button>
+                </div>
+            
+            </div>
+    </nav>
+    <section class="hero">
+        <h1>Unlimited Movies, Anime, and More.</h1>
+        <p>Watch anywhere. Cancel anytime. Join thousands of movie enthusiasts discovering the best of cinema every day.</p>
+        <a href="#" class="cta-button">Start Watching Now</a>
+    </section>
+
+     <!-- Features -->
+  <section class="features section section-light">
+    <h2 class="section-title center-text">Our Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎥</div>
+        <h3 class="feature-title">High Quality Streaming</h3>
+        <p>Experience movies in stunning quality with our optimized streaming service.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3 class="feature-title">Multi-Device Support</h3>
+        <p>Watch on any device, anywhere, at any time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3 class="feature-title">User Reviews</h3>
+        <p>Read and share reviews with our vibrant community.</p>
+      </div>
+    </div>
+  </section>
+
+ <div class="container">
+    <div class="testimonial-heading">
+      <h2>What Our Members Say</h2>
+      <p>Join thousands of movie enthusiasts who've found their perfect entertainment destination</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-content">This platform completely changed how I discover movies. The recommendation system is spot-on, and I've found so many hidden gems I would have never watched otherwise.</p>
+        <div class="testimonial-user">
+          <div class="user-avatar" style="background-image: url('/api/placeholder/50/50')"></div>
+          <div class="user-info">
+            <h4>Sarah Johnson</h4>
+            <p>Premium Member • 2 years</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <div class="testimonial-rating">★★★★★</div>
+        <p class="testimonial-content">The curated collections are amazing! I'm a huge sci-fi fan, and their 'Future Classics' collection introduced me to international sci-fi I never knew existed. Worth every penny.</p>
+        <div class="testimonial-user">
+          <div class="user-avatar" style="background-image: url('/api/placeholder/50/50')"></div>
+          <div class="user-info">
+            <h4>Michael Chen</h4>
+            <p>Premium Member • 1 year</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <div class="testimonial-rating">★★★★☆</div>
+        <p class="testimonial-content">I love the mood-based browsing feature. Sometimes I don't know what genre I want, but I know how I want to feel. This site gets that, and it's refreshing.</p>
+        <div class="testimonial-user">
+          <div class="user-avatar" style="background-image: url('/api/placeholder/50/50')"></div>
+          <div class="user-info">
+            <h4>Alex Patel</h4>
+            <p>Standard Member • 6 months</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="testimonial-cta">
+      <a href="#" class="cta-button">Start Your Free Trial</a>
+    </div>
+  </div>
+
+  <!-- App Download -->
+  <section class="app-download section section-light">
+    <div class="app-info">
+      <h2 class="app-title">Download Our App</h2>
+      <p class="app-description">Enjoy CinemaHub on the go with our mobile app. Stream your favorite movies anytime, anywhere.</p>
+      <div class="app-buttons">
+        <a href="#" class="app-button">
+          <div class="app-button-icon"><img src="img/app-store.png"></div>
+          <div class="app-button-text">
+            <span class="app-button-small">Download on the</span>
+            <span class="app-button-large">App Store</span>
+          </div>
+        </a>
+        <a href="#" class="app-button">
+          <div class="app-button-icon"><img src="img/google-play.png"></div>
+          <div class="app-button-text">
+            <span class="app-button-small">Get it on</span>
+            <span class="app-button-large">Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <img src="img/mobilepreview.jpeg" alt="App Preview" class="app-image">
+  </section>
+
+  <!-- Blog -->
+  <section class="blog section">
+    <h2 class="section-title center-text">Latest from Our Blog</h2>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-image" style="background-image: url('/api/placeholder/350/200');"></div>
+        <div class="blog-content">
+          <div class="blog-date">April 20, 2025</div>
+          <h3 class="blog-title">The Evolution of Cinema in the Digital Age</h3>
+          <p class="blog-excerpt">Discover how digital technology is transforming the way we experience movies, from streaming to virtual reality.</p>
+          <a href="#" class="read-more">Read More <span>→</span></a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-image" style="background-image: url('/api/placeholder/350/200');"></div>
+        <div class="blog-content">
+          <div class="blog-date">April 15, 2025</div>
+          <h3 class="blog-title">Top 10 Must-Watch Movies of 2025</h3>
+          <p class="blog-excerpt">A curated list of the best movies to watch this year, featuring a mix of blockbusters and indie gems.</p>
+          <a href="#" class="read-more">Read More <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing section section-light">
+    <h2 class="section-title center-text">Choose Your Plan</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-name">Basic</h3>
+          <div class="pricing-price">$9.99<span>/month</span></div>
+          <div class="pricing-duration">Billed monthly</div>
+        </div>
+        <div class="pricing-features">
+          <div class="pricing-feature">
+            <span class="pricing-feature-icon">✓</span>
+            <span>Standard Streaming Quality</span>
+          </div>
+          <div class="pricing-feature">
+            <span class="pricing-feature-icon">✓</span>
+            <span>Access to all movies</span>
+          </div>
+        </div>
+        <div class="pricing-btn">
+          <a href="#" class="btn">Get Started</a>
+        </div>
+      </div>
+      <div class="pricing-card popular">
+        <div class="popular-tag">Most Popular</div>
+        <div class="pricing-header">
+          <h3 class="pricing-name">Premium</h3>
+          <div class="pricing-price">$14.99<span>/month</span></div>
+          <div class="pricing-duration">Billed monthly</div>
+        </div>
+        <div class="pricing-features">
+          <div class="pricing-feature">
+            <span class="pricing-feature-icon">✓</span>
+            <span>HD &amp; 4K Streaming</span>
+          </div>
+          <div class="pricing-feature">
+            <span class="pricing-feature-icon">✓</span>
+            <span>Exclusive Releases</span>
+          </div>
+          <div class="pricing-feature">
+            <span class="pricing-feature-icon">✓</span>
+            <span>Multiple Screens</span>
+          </div>
+        </div>
+        <div class="pricing-btn">
+          <a href="#" class="btn">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+    <section class="newsletter">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter to get the latest updates on new releases, exclusive content, and movie recommendations.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email">
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+    
+    <!-- Footer excluded as requested -->
+</body>
+</html>

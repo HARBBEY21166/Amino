@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amino - Your Movie Destination</title>
+    <link rel="stylesheet" href="style.css">
+     <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <!-- Header -->
+  <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo"><a href="home.html">Amino</a></h1>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-list-item active"><a href="home.html">Home</a></li>
+                    <li class="menu-list-item"><a href="movies.html">Movies</a></li>
+                    <li class="menu-list-item"><a href="anime.html">Anime</a></li>
+                    <li class="menu-list-item"><a href="popular.html">Popular</a></li>
+                    <li class="menu-list-item"><a href="trends.html">Trends</a></li>
+
+                </ul>
+            </div>
+
+            <div class="profile-container">
+                <img class="profile-picture" src="img/profile.jpeg" alt="Profile Picture">
+                <div class="profile-text-container" id="profile-dropdown-toggle">
+                    <span class="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+                
+                <!-- Profile Dropdown Menu -->
+                <div class="profile-menu" id="profile-dropdown-menu">
+                    <div class="user-info">
+                        <span class="user-name">Abbey Aina</span>
+                        <span class="user-email">olamilekansunday445.com</span>
+                        <span class="subscription-badge">Premium</span>
+                    </div>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fas fa-user profile-menu-icon"></i>
+                        <span class="profile-menu-text">My Account</span>
+                    </a>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fas fa-list profile-menu-icon"></i>
+                        <span class="profile-menu-text">My Watchlist</span>
+                    </a>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fas fa-bell profile-menu-icon"></i>
+                        <span class="profile-menu-text">My Reminder</span>
+                    </a>
+                    <hr>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fas fa-cog profile-menu-icon"></i>
+                        <span class="profile-menu-text">Settings</span>
+                    </a>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fa-solid fa-circle-question profile-menu-icon"></i>
+                        <span class="profile-menu-text">Help</span>
+                    </a>
+                    <hr>
+                    <a href="login.html" class="profile-menu-item" id="logout-button">
+                        <i class="fas fa-sign-out-alt profile-menu-icon"></i>
+                        <span class="profile-menu-text">Log Out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <aside class="sidebar">
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-search" id="search-icon"></i></a>
+        <a href="index.html"><i class="left-menu-icon fas fa-home"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-users"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-heart"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-tv"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-clock-rotate-left"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-shopping-cart"></i></a>
+    </aside>
+
+     <!-- Search Container -->
+    <div class="search-container" id="search-container">
+        <button class="close-search" id="close-search">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search for movies, series, genres..." id="search-input">
+            <button class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="search-results" id="search-results">
+            <!-- Search results will be populated here -->
+        </div>
+    </div>
+
+ <div class="container">
+      <div class="content-container">
+      <!-- Hero Slider -->
+  <section class="hero-slider">
+    <div class="slides">
+      <div class="slide" style="background-image: url('/api/placeholder/1200/800');">
+        <div class="slide-content">
+          <h2>Interstellar Journey</h2>
+          <p>A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.</p>
+          <a href="#" class="btn">Watch Now</a>
+        </div>
+      </div>
+      <div class="slide" style="background-image: url('/api/placeholder/1200/800');">
+        <div class="slide-content">
+          <h2>The Matrix Revolution</h2>
+          <p>When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth.</p>
+          <a href="#" class="btn">Watch Now</a>
+        </div>
+      </div>
+      <div class="slide" style="background-image: url('/api/placeholder/1200/800');">
+        <div class="slide-content">
+          <h2>Inception Dream</h2>
+          <p>A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea.</p>
+          <a href="#" class="btn">Watch Now</a>
+        </div>
+      </div>
+      <div class="slide" style="background-image: url('/api/placeholder/1200/800');">
+        <div class="slide-content">
+          <h2>Avengers: Ultimate</h2>
+          <p>Earth's mightiest heroes must come together and learn to fight as a team to stop an alien invasion.</p>
+          <a href="#" class="btn">Watch Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="slider-nav">
+      <div class="slider-dot active"></div>
+      <div class="slider-dot"></div>
+      <div class="slider-dot"></div>
+      <div class="slider-dot"></div>
+    </div>
+  </section>
+
+           <div class="container">
+    <h2>Browse Categories</h2>
+    
+    <!-- Main Genres -->
+    <div class="section-title">
+      <h3>Popular Genres</h3>
+      <a href="#" class="view-all">View All Genres</a>
+    </div>
+    <div class="categories-grid">
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Action">
+        <div class="category-name">Action</div>
+      </div>
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Comedy">
+        <div class="category-name">Comedy</div>
+      </div>
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Drama">
+        <div class="category-name">Drama</div>
+      </div>
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Horror">
+        <div class="category-name">Horror</div>
+      </div>
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Sci-Fi">
+        <div class="category-name">Sci-Fi</div>
+      </div>
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Fantasy">
+        <div class="category-name">Fantasy</div>
+      </div>
+    </div>
+    
+    <!-- By Mood -->
+    <div class="section-title">
+      <h3>Browse by Mood</h3>
+    </div>
+    <div class="mood-categories">
+      <div class="mood-tag">Feel-good</div>
+      <div class="mood-tag">Thrilling</div>
+      <div class="mood-tag">Heartwarming</div>
+      <div class="mood-tag">Suspenseful</div>
+      <div class="mood-tag">Thought-provoking</div>
+      <div class="mood-tag">Romantic</div>
+      <div class="mood-tag">Nostalgic</div>
+      <div class="mood-tag">Inspiring</div>
+    </div>
+    
+    <!-- Collections -->
+    <div class="section-title">
+      <h3>Curated Collections</h3>
+      <a href="#" class="view-all">View All Collections</a>
+    </div>
+    <div class="categories-grid">
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Award Winners">
+        <div class="category-name">Award Winners</div>
+      </div>
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Cult Classics">
+        <div class="category-name">Cult Classics</div>
+      </div>
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Based on Books">
+        <div class="category-name">Based on Books</div>
+      </div>
+      <div class="category-card">
+        <img src="img/2.jpeg" alt="Director Spotlight">
+        <div class="category-name">Director Spotlight</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular Movies -->
+  <section class="popular-movies section section-light">
+    <h2 class="section-title center-text">Popular Movies</h2>
+    <div class="movies-grid">
+      <div class="movie-card">
+         
+        <div class="movie-poster" style="background-image: url('img/2.jpeg');">
+          <div class="movie-rating">9.2</div>
+        </div>
+        <div class="movie-info">
+          <h3 class="movie-title">The Dark Knight</h3>
+          <div class="movie-meta">
+            <span>Action, Crime</span>
+            <span>152 min</span>
+          </div>
+        </div>
+      </div>
+     <div class="movie-card">
+         <div class="movie-rating">9.2</div>
+                <img src="img/2.jpeg" alt="The Lord of the Rings" class="movie-poster">
+         <div class="movie-rating">9.2</div>
+                <div class="movie-info">
+                    <h3 class="movie-title">The Lord of the Rings: The Fellowship of the Ring</h3>
+                    <div class="movie-details">
+                        <span>2001</span>
+                        <div class="rating"><span class="star">★</span>8.8</div>
+                    </div>
+                </div>
+            </div>
+      <div class="movie-card">
+                <img src="img/2.jpeg" alt="The Lord of the Rings" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">The Lord of the Rings: The Fellowship of the Ring</h3>
+                    <div class="movie-details">
+                        <span>2001</span>
+                        <div class="rating"><span class="star">★</span>8.8</div>
+                    </div>
+                </div>
+            </div>
+     <div class="movie-card">
+                <img src="img/2.jpeg" alt="The Lord of the Rings" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">The Lord of the Rings: The Fellowship of the Ring</h3>
+                    <div class="movie-details">
+                        <span>2001</span>
+                        <div class="rating"><span class="star">★</span>8.8</div>
+                    </div>
+                </div>
+            </div>
+    </div>
+  </section>
+
+  <!-- Top Rated Movies -->
+  <section class="top-rated section">
+    <h2 class="section-title center-text">Top Rated Movies</h2>
+    <div class="movies-grid">
+        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title">Drama Series 1</span>
+                            <p class="movie-list-item-desc">A critically acclaimed series following the complex lives of intriguing characters.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title">Drama Series 1</span>
+                            <p class="movie-list-item-desc">A critically acclaimed series following the complex lives of intriguing characters.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title">Drama Series 1</span>
+                            <p class="movie-list-item-desc">A critically acclaimed series following the complex lives of intriguing characters.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title">Drama Series 1</span>
+                            <p class="movie-list-item-desc">A critically acclaimed series following the complex lives of intriguing characters.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title">Drama Series 1</span>
+                            <p class="movie-list-item-desc">A critically acclaimed series following the complex lives of intriguing characters.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title">Drama Series 1</span>
+                            <p class="movie-list-item-desc">A critically acclaimed series following the complex lives of intriguing characters.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title">Drama Series 1</span>
+                            <p class="movie-list-item-desc">A critically acclaimed series following the complex lives of intriguing characters.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title">Drama Series 1</span>
+                            <p class="movie-list-item-desc">A critically acclaimed series following the complex lives of intriguing characters.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+    </div>
+  </section>
+
+  <!-- New Releases -->
+  <section class="new-releases section section-light">
+    <h2 class="section-title center-text">New Releases</h2>
+    <div class="movies-grid">
+      <div class="movie-card">
+                <img src="img/2.jpeg" alt="The Lord of the Rings" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">The Lord of the Rings: The Fellowship of the Ring</h3>
+                    <div class="movie-details">
+                        <span>2001</span>
+                        <div class="rating"><span class="star">★</span>8.8</div>
+                    </div>
+                </div>
+            </div>
+<div class="movie-card">
+                <img src="img/2.jpeg" alt="The Lord of the Rings" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">The Lord of the Rings: The Fellowship of the Ring</h3>
+                    <div class="movie-details">
+                        <span>2001</span>
+                        <div class="rating"><span class="star">★</span>8.8</div>
+                    </div>
+                </div>
+            </div>
+      <div class="movie-card">
+        <div class="movie-poster" style="background-image: url('img/2.jpeg');">
+          <div class="movie-rating">8.1</div>
+        </div>
+        <div class="movie-info">
+          <h3 class="movie-title">The New Horizon</h3>
+          <div class="movie-meta">
+            <span>Adventure, Sci-Fi</span>
+            <span>140 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+          <!-- Coming Soon -->
+  <section class="coming-soon section">
+    <h2 class="section-title center-text">Coming Soon</h2>
+    <div class="coming-soon-grid">
+      <div class="coming-soon-card">
+        <div class="coming-soon-poster" style="background-image: url('img/2.jpeg');">
+          <div class="release-date">May 2025</div>
+        </div>
+        <div class="coming-soon-info">
+          <h3 class="coming-soon-title">Future Blockbuster</h3>
+          <p class="movie-description">An upcoming epic that promises groundbreaking visuals and storytelling.</p>
+        </div>
+      </div>
+      <div class="coming-soon-card">
+        <div class="coming-soon-poster" style="background-image: url('img/2.jpeg');">
+          <div class="release-date">June 2025</div>
+        </div>
+        <div class="coming-soon-info">
+          <h3 class="coming-soon-title">Sci-Fi Odyssey</h3>
+          <p class="movie-description">A journey beyond time and space, coming soon to theaters near you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <h2 class="section-title center-text">Subscribe for Updates</h2>
+    <form class="newsletter-form">
+      <input type="email" placeholder="Enter your email">
+      <button type="submit" class="btn">Subscribe</button>
+    </form>
+  </section>    
+  
+  </div>
+     
+ </div>
+    
+    <!--Footer-->
+    <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-column">
+                <h3 class="footer-logo">Amino</h3>
+                <p class="footer-description">Your ultimate destination for movies and series streaming. Discover, watch, and enjoy the best content on any device.</p>
+                <div class="social-links">
+                    <a href="javascript:void(0);" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="javascript:void(0);" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="javascript:void(0);" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="javascript:void(0);" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="series.html">Series</a></li>
+                    <li><a href="popular.html">Popular</a></li>
+                    <li><a href="trends.html">Trends</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-title">Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="javascript:void(0);">Action</a></li>
+                    <li><a href="javascript:void(0);">Comedy</a></li>
+                    <li><a href="javascript:void(0);">Drama</a></li>
+                    <li><a href="javascript:void(0);">Horror</a></li>
+                    <li><a href="javascript:void(0);">Documentary</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-title">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="javascript:void(0);">FAQ</a></li>
+                    <li><a href="javascript:void(0);">Help Center</a></li>
+                    <li><a href="javascript:void(0);">Contact Us</a></li>
+                    <li><a href="javascript:void(0);">My Account</a></li>
+                    <li><a href="javascript:void(0);">Subscription</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-title">Download Our App</h4>
+                <p class="app-description">Watch on the go with our mobile app</p>
+                <div class="app-links">
+                    <a href="javascript:void(0);" class="app-link">
+                        <img src="img/app-store.png" alt="App Store">
+                    </a>
+                    <a href="javascript:void(0);" class="app-link">
+                        <img src="img/google-play.png" alt="Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="copyright">
+                <p>&copy; 2025 Amino. All rights reserved.</p>
+            </div>
+            <div class="legal-links">
+                <a href="javascript:void(0);">Terms of Service</a>
+                <a href="javascript:void(0);">Privacy Policy</a>
+                <a href="javascript:void(0);">Cookie Policy</a>
+                <a href="javascript:void(0);">Licensing</a>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+    <script src="app.js">
+    // Simple slider functionality
+    
+  </script>
+</body>
+</html>

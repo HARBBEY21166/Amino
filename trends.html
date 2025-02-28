@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Screen News | Latest Movie Updates</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #d13239;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 1rem;
+        }
+        
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #d13239;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #d13239;
+        }
+        
+        .search-bar {
+            margin: 1rem auto;
+            max-width: 600px;
+            display: flex;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-bar button {
+            background-color: #d13239;
+            color: white;
+            padding: 0 1rem;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .featured-news {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .main-article {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-article img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 2rem 1.5rem;
+            color: white;
+        }
+        
+        .article-overlay h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-meta {
+            display: flex;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-meta span {
+            margin-right: 1rem;
+        }
+        
+        .side-news {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .side-article {
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .side-article img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        
+        .side-article-content {
+            padding: 0.8rem;
+        }
+        
+        .side-article h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .news-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .news-card-content {
+            padding: 1.2rem;
+        }
+        
+        .news-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category {
+            display: inline-block;
+            background-color: #1a1a2e;
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        
+        .category.red {
+            background-color: #d13239;
+        }
+        
+        .category.green {
+            background-color: #28a745;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .newsletter-form button {
+            background-color: #d13239;
+            color: white;
+            padding: 0 1.5rem;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 2rem 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #d13239;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #d13239;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .featured-news {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-article img {
+                height: 300px;
+            }
+            
+            .side-news {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="logo">
+                <h1>Silver<span>Screen</span>News</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">TV Shows</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Trailers</a></li>
+                    <li><a href="#">Celebrities</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for movies, news, celebrities...">
+            <button>Search</button>
+        </div>
+    </header>
+    
+    <main>
+        <section class="featured-news">
+            <div class="main-article">
+                <img src="/api/placeholder/800/400" alt="Movie News Feature">
+                <div class="article-overlay">
+                    <h2>"Stellar Voyage" Breaks Box Office Records with $200 Million Opening Weekend</h2>
+                    <div class="article-meta">
+                        <span>By John Reynolds</span>
+                        <span>February 24, 2025</span>
+                    </div>
+                    <p>The sci-fi epic directed by Christopher Nolan has become the highest-grossing February release of all time, surpassing expectations and establishing a new franchise.</p>
+                </div>
+            </div>
+            
+            <div class="side-news">
+                <div class="side-article">
+                    <img src="/api/placeholder/100/100" alt="Academy Awards">
+                    <div class="side-article-content">
+                        <h3>Academy Awards Nominations Announced: Full List</h3>
+                        <div class="article-meta">
+                            <span>February 22, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="side-article">
+                    <img src="/api/placeholder/100/100" alt="New Marvel movie">
+                    <div class="side-article-content">
+                        <h3>Marvel Reveals First Look at "Fantastic Four" Reboot</h3>
+                        <div class="article-meta">
+                            <span>February 20, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="side-article">
+                    <img src="/api/placeholder/100/100" alt="Director interview">
+                    <div class="side-article-content">
+                        <h3>Exclusive Interview with Greta Gerwig on Her New Period Drama</h3>
+                        <div class="article-meta">
+                            <span>February 18, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="news-grid">
+            <div class="news-card">
+                <img src="/api/placeholder/300/180" alt="Upcoming movie">
+                <div class="news-card-content">
+                    <span class="category">Upcoming</span>
+                    <h3>"Desert Mirage" Trailer Reveals Stunning Visuals and All-Star Cast</h3>
+                    <div class="article-meta">
+                        <span>February 23, 2025</span>
+                    </div>
+                    <p>The highly anticipated thriller from Denis Villeneuve showcases breathtaking cinematography and impressive performances.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="/api/placeholder/300/180" alt="Streaming news">
+                <div class="news-card-content">
+                    <span class="category red">Streaming</span>
+                    <h3>Netflix Announces "Bridgerton" Spin-off Series for 2026</h3>
+                    <div class="article-meta">
+                        <span>February 22, 2025</span>
+                    </div>
+                    <p>The popular period drama is expanding with a new series focusing on Queen Charlotte's early life and reign.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="/api/placeholder/300/180" alt="Cast announcement">
+                <div class="news-card-content">
+                    <span class="category green">Casting</span>
+                    <h3>Emma Stone to Star in New Psychological Thriller by A24</h3>
+                    <div class="article-meta">
+                        <span>February 21, 2025</span>
+                    </div>
+                    <p>The Oscar-winning actress has signed on for the lead role in "Shattered Reflections," directed by Ari Aster.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="/api/placeholder/300/180" alt="Box office news">
+                <div class="news-card-content">
+                    <span class="category">Box Office</span>
+                    <h3>Global Box Office Surges as Theater Attendance Reaches Pre-Pandemic Levels</h3>
+                    <div class="article-meta">
+                        <span>February 20, 2025</span>
+                    </div>
+                    <p>Movie theaters worldwide report strong attendance numbers, signaling a full recovery for the industry.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="newsletter">
+            <h2>Stay Updated with the Latest Movie News</h2>
+            <p>Subscribe to our newsletter and never miss out on breaking news, exclusive interviews, and upcoming releases.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+        
+        <section class="news-grid">
+            <div class="news-card">
+                <img src="/api/placeholder/300/180" alt="Director news">
+                <div class="news-card-content">
+                    <span class="category">Directors</span>
+                    <h3>James Cameron Teases New Technology for "Avatar 4" Production</h3>
+                    <div class="article-meta">
+                        <span>February 19, 2025</span>
+                    </div>
+                    <p>The innovative filmmaker reveals groundbreaking motion capture advancements for the next installment in the franchise.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="/api/placeholder/300/180" alt="Award news">
+                <div class="news-card-content">
+                    <span class="category red">Awards</span>
+                    <h3>Independent Film Awards Celebrate Diversity with Record-Breaking Nominations</h3>
+                    <div class="article-meta">
+                        <span>February 18, 2025</span>
+                    </div>
+                    <p>This year's nominations showcase unprecedented diversity in storytelling, casting, and filmmaking perspectives.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="/api/placeholder/300/180" alt="Festival news">
+                <div class="news-card-content">
+                    <span class="category green">Festivals</span>
+                    <h3>Cannes Film Festival Announces Special Tribute to Legendary Filmmaker</h3>
+                    <div class="article-meta">
+                        <span>February 17, 2025</span>
+                    </div>
+                    <p>The 2025 festival will honor Martin Scorsese with a retrospective and lifetime achievement award.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="/api/placeholder/300/180" alt="Technology news">
+                <div class="news-card-content">
+                    <span class="category">Technology</span>
+                    <h3>New AI-Powered Post-Production Tool Revolutionizes Visual Effects Industry</h3>
+                    <div class="article-meta">
+                        <span>February 16, 2025</span>
+                    </div>
+                    <p>Major studios adopt innovative software that reduces VFX production time by up to 40 percent.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">TV Shows</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Trailers</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Comedy</a></li>
+                    <li><a href="#">Drama</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Sci-Fi</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Advertise</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">TikTok</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 SilverScreen News. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

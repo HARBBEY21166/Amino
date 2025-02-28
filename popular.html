@@ -1,0 +1,861 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Movie Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0f0f1a;
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #b3b3b3;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .trending-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title .icon {
+            margin-right: 10px;
+            color: #e50914;
+        }
+        
+        .trending-grid {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            scroll-behavior: smooth;
+        }
+        
+        .trending-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .trending-grid::-webkit-scrollbar-track {
+            background: #1f1f2f;
+            border-radius: 10px;
+        }
+        
+        .trending-grid::-webkit-scrollbar-thumb {
+            background: #e50914;
+            border-radius: 10px;
+        }
+        
+        .trending-card {
+            min-width: 280px;
+            background: linear-gradient(to bottom, rgba(31, 31, 47, 0.8), rgba(31, 31, 47, 1));
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .trending-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .trending-poster {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 3px solid #e50914;
+        }
+        
+        .trending-info {
+            padding: 15px;
+            position: relative;
+        }
+        
+        .trending-rank {
+            position: absolute;
+            top: -30px;
+            left: 15px;
+            width: 50px;
+            height: 50px;
+            background-color: #e50914;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .trending-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 10px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .trending-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #b3b3b3;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .trending-rating {
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .star {
+            color: #ffd700;
+            margin-right: 5px;
+        }
+        
+        .trending-genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        
+        .genre-tag {
+            padding: 3px 10px;
+            background-color: rgba(229, 9, 20, 0.2);
+            border: 1px solid #e50914;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .view-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: transparent;
+            border: 2px solid #e50914;
+            color: #ffffff;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .view-btn:hover {
+            background-color: #e50914;
+        }
+        
+        .popular-section {
+            margin-bottom: 50px;
+        }
+        
+        .popular-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        
+        .movie-card {
+            background-color: #1f1f2f;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .movie-info {
+            padding: 15px;
+        }
+        
+        .movie-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .movie-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #b3b3b3;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+        }
+        
+        .view-more {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .view-more-btn {
+            padding: 12px 30px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .view-more-btn:hover {
+            background-color: #f40612;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: #1f1f2f;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            animation: modalFade 0.3s ease;
+        }
+        
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #fff;
+        }
+        
+        .modal-details {
+            display: flex;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .modal-poster {
+            width: 250px;
+            border-radius: 8px;
+        }
+        
+        .modal-info {
+            flex: 1;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-meta {
+            margin-bottom: 15px;
+            color: #b8b8b8;
+        }
+        
+        .modal-description {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .watch-btn {
+            padding: 10px 20px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .watch-btn:hover {
+            background-color: #f40612;
+        }
+        
+        @media (max-width: 768px) {
+            .trending-grid {
+                gap: 15px;
+            }
+            
+            .trending-card {
+                min-width: 220px;
+            }
+            
+            .trending-poster {
+                height: 320px;
+            }
+            
+            .modal-details {
+                flex-direction: column;
+            }
+            
+            .modal-poster {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto 20px;
+            }
+            
+            .popular-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .movie-poster {
+                height: 225px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo"><a href="index.html">Amino</a></h1>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-list-item active"><a href="index.html">Home</a></li>
+                    <li class="menu-list-item"><a href="movies.html">Movies</a></li>
+                    <li class="menu-list-item"><a href="series.html">Series</a></li>
+                    <li class="menu-list-item"><a href="popular.html">Popular</a></li>
+                    <li class="menu-list-item"><a href="trends.html">Trends</a></li>
+
+                </ul>
+            </div>
+
+            <div class="profile-container">
+                <img class="profile-picture" src="img/profile.jpeg" alt="Profile Picture">
+                <div class="profile-text-container" id="profile-dropdown-toggle">
+                    <span class="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+                
+                <!-- Profile Dropdown Menu -->
+                <div class="profile-menu" id="profile-dropdown-menu">
+                    <div class="user-info">
+                        <span class="user-name">Abbey Aina</span>
+                        <span class="user-email">olamilekansunday445.com</span>
+                        <span class="subscription-badge">Premium</span>
+                    </div>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fas fa-user profile-menu-icon"></i>
+                        <span class="profile-menu-text">My Account</span>
+                    </a>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fas fa-list profile-menu-icon"></i>
+                        <span class="profile-menu-text">My Watchlist</span>
+                    </a>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fas fa-bell profile-menu-icon"></i>
+                        <span class="profile-menu-text">My Reminder</span>
+                    </a>
+                    <hr>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fas fa-cog profile-menu-icon"></i>
+                        <span class="profile-menu-text">Settings</span>
+                    </a>
+                    <a href="javascript:void(0);" class="profile-menu-item">
+                        <i class="fa-solid fa-circle-question profile-menu-icon"></i>
+                        <span class="profile-menu-text">Help</span>
+                    </a>
+                    <hr>
+                    <a href="login.html" class="profile-menu-item" id="logout-button">
+                        <i class="fas fa-sign-out-alt profile-menu-icon"></i>
+                        <span class="profile-menu-text">Log Out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <aside class="sidebar">
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-search" id="search-icon"></i></a>
+        <a href="index.html"><i class="left-menu-icon fas fa-home"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-users"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-heart"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-tv"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-clock-rotate-left"></i></a>
+        <a href="javascript:void(0);"><i class="left-menu-icon fas fa-shopping-cart"></i></a>
+    </aside>
+
+     <!-- Search Container -->
+    <div class="search-container" id="search-container">
+        <button class="close-search" id="close-search">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search for movies, series, genres..." id="search-input">
+            <button class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="search-results" id="search-results">
+            <!-- Search results will be populated here -->
+        </div>
+    </div>
+    
+    <div class="container">
+        <h1 class="page-title">Popular Movies</h1>
+        <p class="subtitle">Discover what everyone is watching right now</p>
+        
+        <section class="trending-section">
+            <h2 class="section-title">
+                <span class="icon">🔥</span>Trending This Week
+            </h2>
+            <div class="trending-grid" id="trending-container">
+                <!-- Trending movies will be added here by JavaScript -->
+            </div>
+        </section>
+        
+        <section class="popular-section">
+            <h2 class="section-title">
+                <span class="icon">⭐</span>Popular Right Now
+            </h2>
+            <div class="popular-grid" id="popular-container">
+                <!-- Popular movies will be added here by JavaScript -->
+            </div>
+            <div class="view-more">
+                <button class="view-more-btn">View More</button>
+            </div>
+        </section>
+    </div>
+    
+    <div id="movie-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-details" class="modal-details"></div>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-column">
+                <h3 class="footer-logo">Amino</h3>
+                <p class="footer-description">Your ultimate destination for movies and series streaming. Discover, watch, and enjoy the best content on any device.</p>
+                <div class="social-links">
+                    <a href="javascript:void(0);" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="javascript:void(0);" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="javascript:void(0);" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="javascript:void(0);" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li><a href="series.html">Series</a></li>
+                    <li><a href="popular.html">Popular</a></li>
+                    <li><a href="trends.html">Trends</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-title">Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="javascript:void(0);">Action</a></li>
+                    <li><a href="javascript:void(0);">Comedy</a></li>
+                    <li><a href="javascript:void(0);">Drama</a></li>
+                    <li><a href="javascript:void(0);">Horror</a></li>
+                    <li><a href="javascript:void(0);">Documentary</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-title">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="javascript:void(0);">FAQ</a></li>
+                    <li><a href="javascript:void(0);">Help Center</a></li>
+                    <li><a href="javascript:void(0);">Contact Us</a></li>
+                    <li><a href="javascript:void(0);">My Account</a></li>
+                    <li><a href="javascript:void(0);">Subscription</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-title">Download Our App</h4>
+                <p class="app-description">Watch on the go with our mobile app</p>
+                <div class="app-links">
+                    <a href="javascript:void(0);" class="app-link">
+                        <img src="img/app-store.png" alt="App Store">
+                    </a>
+                    <a href="javascript:void(0);" class="app-link">
+                        <img src="img/google-play.png" alt="Google Play">
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="copyright">
+                <p>&copy; 2025 Amino. All rights reserved.</p>
+            </div>
+            <div class="legal-links">
+                <a href="javascript:void(0);">Terms of Service</a>
+                <a href="javascript:void(0);">Privacy Policy</a>
+                <a href="javascript:void(0);">Cookie Policy</a>
+                <a href="javascript:void(0);">Licensing</a>
+            </div>
+        </div>
+    </div>
+</footer>
+    <!--Footer-->
+    <script src="app.js"></script>
+    <script>
+        // Sample trending movies data
+        const trendingMovies = [
+            {
+                id: 1,
+                title: "Dune: Part Two",
+                year: 2024,
+                genre: ["sci-fi", "adventure", "drama"],
+                rating: 8.7,
+                director: "Denis Villeneuve",
+                poster: "images/dune2.jpg",
+                description: "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he must prevent a terrible future only he can foresee.",
+                duration: "2h 46min",
+                popularity: 98,
+                rank: 1
+            },
+            {
+                id: 2,
+                title: "Madame Web",
+                year: 2024,
+                genre: ["action", "adventure", "sci-fi"],
+                rating: 7.1,
+                director: "S.J. Clarkson",
+                poster: "images/madame_web.jpg",
+                description: "Cassandra Webb develops the power to see into the future. Forced to confront revelations about her past, she forges a relationship with three young women destined for powerful futures, if they can all survive a deadly present.",
+                duration: "1h 56min",
+                popularity: 92,
+                rank: 2
+            },
+            {
+                id: 3,
+                title: "Argylle",
+                year: 2024,
+                genre: ["action", "comedy", "thriller"],
+                rating: 6.9,
+                director: "Matthew Vaughn",
+                poster: "images/argylle.jpg",
+                description: "A reclusive author who writes espionage novels about a secret agent finds her life upended when the plots of her books start to mirror reality, drawing her into the world of international spies and danger.",
+                duration: "2h 19min",
+                popularity: 88,
+                rank: 3
+            },
+            {
+                id: 4,
+                title: "Oppenheimer",
+                year: 2023,
+                genre: ["biography", "drama", "history"],
+                rating: 8.9,
+                director: "Christopher Nolan",
+                poster: "images/oppenheimer.jpg",
+                description: "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during World War II, exploring the moral complexities and historical impact of his work.",
+                duration: "3h 0min",
+                popularity: 95,
+                rank: 4
+            },
+            {
+                id: 5,
+                title: "Poor Things",
+                year: 2023,
+                genre: ["comedy", "drama", "romance"],
+                rating: 8.5,
+                director: "Yorgos Lanthimos",
+                poster: "images/poor_things.jpg",
+                description: "The incredible tale about the fantastical evolution of Bella Baxter, a young woman brought back to life by a brilliant and unorthodox scientist, who embarks on a whirlwind adventure of self-discovery.",
+                duration: "2h 21min",
+                popularity: 87,
+                rank: 5
+            }
+        ];
+        
+        // Sample popular movies data
+        const popularMovies = [
+            {
+                id: 6,
+                title: "Barbie",
+                year: 2023,
+                genre: ["adventure", "comedy", "fantasy"],
+                rating: 7.3,
+                director: "Greta Gerwig",
+                poster: "images/barbie.jpg",
+                description: "Barbie suffers a crisis that leads her to question her world and her existence, embarking on a journey of self-discovery alongside Ken in the real world.",
+                duration: "1h 54min",
+                popularity: 90
+            },
+            {
+                id: 7,
+                title: "The Beekeeper",
+                year: 2024,
+                genre: ["action", "thriller"],
+                rating: 7.5,
+                director: "David Ayer",
+                poster: "images/beekeeper.jpg",
+                description: "A former black ops agent leaves behind a quiet life when a dangerous conspiracy threatens those she cares about, unleashing her lethal skills to seek vengeance.",
+                duration: "1h 45min",
+                popularity: 86
+            },
+            {
+                id: 8,
+                title: "Anyone But You",
+                year: 2023,
+                genre: ["comedy", "romance"],
+                rating: 6.8,
+                director: "Will Gluck",
+                poster: "images/anyone_but_you.jpg",
+                description: "Two people who despise each other pretend to be a couple at a destination wedding for their own personal reasons, only to find unexpected feelings developing.",
+                duration: "1h 43min",
+                popularity: 82
+            },
+            {
+                id: 9,
+                title: "The Color Purple",
+                year: 2023,
+                genre: ["drama", "musical"],
+                rating: 7.2,
+                director: "Blitz Bazawule",
+                poster: "images/color_purple.jpg",
+                description: "A musical adaptation of the novel about the journey of a young African American woman overcoming tremendous hardship to find love and independence in the American South.",
+                duration: "2h 20min",
+                popularity: 79
+            },
+            {
+                id: 10,
+                title: "Aquaman and the Lost Kingdom",
+                year: 2023,
+                genre: ["action", "adventure", "fantasy"],
+                rating: 6.3,
+                director: "James Wan",
+                poster: "images/aquaman2.jpg",
+                description: "Aquaman must forge an uneasy alliance with an unlikely partner to protect Atlantis and the world from devastation.",
+                duration: "2h 4min",
+                popularity: 85
+            },
+            {
+                id: 11,
+                title: "Fighter",
+                year: 2024,
+                genre: ["action", "drama", "thriller"],
+                rating: 7.6,
+                director: "Siddharth Anand",
+                poster: "images/fighter.jpg",
+                description: "An elite fighter pilot squad faces a deadly air attack, provoking them to engage in a full-fledged war to protect their nation.",
+                duration: "2h 26min",
+                popularity: 83
+            },
+            {
+                id: 12,
+                title: "Migration",
+                year: 2023,
+                genre: ["animation", "adventure", "comedy"],
+                rating: 7.1,
+                director: "Benjamin Renner",
+                poster: "images/migration.jpg",
+                description: "A family of ducks tries to convince their overprotective father to go on the vacation of a lifetime, leading to an unexpected journey south for the winter.",
+                duration: "1h 32min",
+                popularity: 78
+            },
+            {
+                id: 13,
+                title: "Wonka",
+                year: 2023,
+                genre: ["adventure", "comedy", "family"],
+                rating: 7.3,
+                director: "Paul King",
+                poster: "images/wonka.jpg",
+                description: "The origin story of a young Willy Wonka, showcasing his adventures before becoming the legendary chocolate factory owner.",
+                duration: "1h 56min",
+                popularity: 84
+            }
+        ];
+        
+        // DOM Elements
+        const trendingContainer = document.getElementById('trending-container');
+        const popularContainer = document.getElementById('popular-container');
+        const modal = document.getElementById('movie-modal');
+        const modalDetails = document.getElementById('modal-details');
+        const closeModal = document.querySelector('.close');
+        const viewMoreBtn = document.querySelector('.view-more-btn');
+        
+        // Event Listeners
+        closeModal.addEventListener('click', () => modal.style.display = 'none');
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+        viewMoreBtn.addEventListener('click', () => {
+            alert('This would load more popular movies in a real application.');
+        });
+        
+        // Functions
+        function renderTrendingMovies() {
+            trendingContainer.innerHTML = '';
+            
+            trendingMovies.forEach(movie => {
+                const trendingCard = document.createElement('div');
+                trendingCard.className = 'trending-card';
+                
+                // Prepare genre tags HTML
+                const genreTags = movie.genre.map(genre => 
+                    `<span class="genre-tag">${genre}</span>`
+                ).join('');
+                
+                trendingCard.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.title}" class="trending-poster">
+                    <div class="trending-info">
+                        <div class="trending-rank">#${movie.rank}</div>
+                        <h3 class="trending-title">${movie.title}</h3>
+                        <div class="trending-meta">
+                            <span>${movie.year}</span>
+                            <div class="trending-rating">
+                                <span class="star">★</span>${movie.rating}
+                            </div>
+                        </div>
+                        <div class="trending-genres">
+                            ${genreTags}
+                        </div>
+                        <button class="view-btn">View Details</button>
+                    </div>
+                `;
+                
+                trendingCard.addEventListener('click', () => openMovieDetails(movie));
+                trendingContainer.appendChild(trendingCard);
+            });
+        }
+        
+        function renderPopularMovies() {
+            popularContainer.innerHTML = '';
+            
+            popularMovies.forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.className = 'movie-card';
+                movieCard.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.title}" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">${movie.title}</h3>
+                        <div class="movie-meta">
+                            <span>${movie.year}</span>
+                            <div class="rating">
+                                <span class="star">★</span>${movie.rating}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                movieCard.addEventListener('click', () => openMovieDetails(movie));
+                popularContainer.appendChild(movieCard);
+            });
+        }
+        
+        function openMovieDetails(movie) {
+            // Format genres for display
+            const genresFormatted = movie.genre.join(', ');
+            
+            modalDetails.innerHTML = `
+                <img src="${movie.poster}" alt="${movie.title}" class="modal-poster">
+                <div class="modal-info">
+                    <h2 class="modal-title">${movie.title} (${movie.year})</h2>
+                    <div class="modal-meta">
+                        <p>${movie.duration} | ${genresFormatted} | Director: ${movie.director}</p>
+                        <p><span class="star">★</span> ${movie.rating}/10</p>
+                    </div>
+                    <p class="modal-description">${movie.description}</p>
+                    <button class="watch-btn">Watch Now</button>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+        
+        // Initialize page
+        renderTrendingMovies();
+        renderPopularMovies();
+    </script>
+</body>
+
+</html>
